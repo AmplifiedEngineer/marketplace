@@ -1,6 +1,6 @@
 # Contributors
 
-Thank you to everyone who has signed the [Individual CLA](https://github.com/pragmatic-engineer/playbook/blob/main/.github/ICLA.md) or [Corporate CLA](https://github.com/pragmatic-engineer/playbook/blob/main/.github/CCLA.md) and contributed to this project.
+Thank you to everyone who has signed the [Individual CLA](https://github.com/amplifiedengineer/playbook/blob/main/.github/ICLA.md) or [Corporate CLA](https://github.com/amplifiedengineer/playbook/blob/main/.github/CCLA.md) and contributed to this project.
 
 ## Individual Contributors
 
@@ -12,4 +12,4 @@ Thank you to everyone who has signed the [Individual CLA](https://github.com/pra
 
 ## Corporate Contributors
 
-No corporate CLAs signed yet. See the [Corporate CLA](https://github.com/pragmatic-engineer/playbook/blob/main/.github/CCLA.md) for instructions.
+No corporate CLAs signed yet. See the [Corporate CLA](https://github.com/amplifiedengineer/playbook/blob/main/.github/CCLA.md) for instructions.

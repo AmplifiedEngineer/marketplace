@@ -3,7 +3,7 @@ name: CLA & DCO
 
 # Calls the shared checks in dco-cla.yml and the signing job in cla-sign.yml.
 # Other repos copy this file and call
-# `pragmatic-engineer/.github/.github/workflows/<name>.yml@<commit>` instead of
+# `amplifiedengineer/.github/.github/workflows/<name>.yml@<commit>` instead of
 # the local paths. Pin the commit and bump it when the shared workflows change. The job id must stay `cla-dco` so the required checks read
 # `cla-dco / dco` and `cla-dco / cla-check` in every repo.
 on:
@@ -21,11 +21,11 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    uses: pragmatic-engineer/.github/.github/workflows/dco-cla.yml@b2e9519585cfd55743223f5c42d3696c7cfbcb86 # main
+    uses: amplifiedengineer/.github/.github/workflows/dco-cla.yml@b2e9519585cfd55743223f5c42d3696c7cfbcb86 # main
 
   cla-sign:
     if: github.event_name == 'issue_comment'
     permissions:
       contents: write
       pull-requests: write
-    uses: pragmatic-engineer/.github/.github/workflows/cla-sign.yml@b2e9519585cfd55743223f5c42d3696c7cfbcb86 # main
+    uses: amplifiedengineer/.github/.github/workflows/cla-sign.yml@b2e9519585cfd55743223f5c42d3696c7cfbcb86 # main

@@ -4,7 +4,7 @@
 
 The `playbook` entry in `.claude-plugin/marketplace.json` is a `git-subdir` source:
 
-- `url`: `https://github.com/pragmatic-engineer/playbook.git`
+- `url`: `https://github.com/amplifiedengineer/playbook.git`
 - `path`: `plugins/playbook`
 - `ref`: a playbook release tag `vX.Y.Z`
 - `metadata.version`: the same version, without the `v`
