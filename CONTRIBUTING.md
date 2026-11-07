@@ -1,6 +1,6 @@
 # Contributing
 
-This repository holds the `pragmatic-engineer` marketplace listing. The `playbook` plugin, its docs and its checks live in [pragmatic-engineer/playbook](https://github.com/pragmatic-engineer/playbook), under `plugins/playbook`. Send plugin changes there.
+This repository holds the `pragmatic-engineer` marketplace listing. The `playbook` plugin, its docs and its checks live in [amplifiedengineer/playbook](https://github.com/amplifiedengineer/playbook), under `plugins/playbook`. Send plugin changes there.
 
 ## Where things go
 

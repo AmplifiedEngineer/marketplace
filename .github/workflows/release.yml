@@ -1,7 +1,7 @@
 name: release
 
 # The playbook release workflow opens release/vX.Y.Z here, which pins the
-# playbook entry to the tag vX.Y.Z (ADR 0039 in pragmatic-engineer/playbook).
+# playbook entry to the tag vX.Y.Z (ADR 0039 in amplifiedengineer/playbook).
 # When that pull request merges, this workflow tags the merge commit vX.Y.Z and
 # publishes a release with the notes "playbook vA -> vB". The tag ruleset lets
 # only the igorjs app create v tags, so the job mints an app token from the
