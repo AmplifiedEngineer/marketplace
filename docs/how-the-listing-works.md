@@ -40,7 +40,7 @@ The tag and release of the bad version stay as they are.
 
 `shell/check-marketplace.sh` checks that:
 
-- The marketplace name is `pragmatic-engineer`.
+- The marketplace name is `amplifiedengineer`.
 - Every source is a `git-subdir` source over https from github.com, with a safe relative path.
 - No source sets `sha`, and no entry sets `version`.
 - A `ref`, when set, is a release tag `vX.Y.Z`.

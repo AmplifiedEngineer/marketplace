@@ -1,8 +1,23 @@
 # marketplace
 
-> **Renamed.** The GitHub organization was `pragmatic-engineer`. It is now `amplifiedengineer`. The marketplace name stays `pragmatic-engineer`. The plugin id `playbook@pragmatic-engineer` does not change. If you added the marketplace from the old address, remove it and add it again: run `claude plugin marketplace remove pragmatic-engineer`, then `claude plugin marketplace add amplifiedengineer/marketplace`, then `claude plugin install playbook@pragmatic-engineer` if the plugin is no longer installed. If the retired hooks plugin is still installed, run `claude plugin uninstall playbook-hooks@pragmatic-engineer`.
+> **Renamed.** The GitHub organization was `pragmatic-engineer`. It is now `amplifiedengineer`. The marketplace was renamed too. It is now `amplifiedengineer`. The plugin id `playbook@pragmatic-engineer` is now `playbook@amplifiedengineer`.
+>
+> An install you already have on the old id keeps working. It keeps updating until you move. New installs use the new id.
+>
+> To move, update the `playbook` binary first. The next release after v0.41.0 is the first that knows both ids. v0.41.0 and older know only the old name. Then run these commands:
+>
+> ```sh
+> claude plugin uninstall playbook@pragmatic-engineer
+> claude plugin marketplace remove pragmatic-engineer
+> claude plugin marketplace add amplifiedengineer/marketplace
+> claude plugin install playbook@amplifiedengineer
+> ```
+>
+> Removing the old marketplace deletes the old plugin's cache and plugin data. Your playbook data in `~/.config/playbook` stays.
+>
+> If the retired hooks plugin is still installed, run `claude plugin uninstall playbook-hooks@pragmatic-engineer`.
 
-The `pragmatic-engineer` plugin marketplace for Claude Code. It lists one plugin, `playbook`.
+The `amplifiedengineer` plugin marketplace for Claude Code. It lists one plugin, `playbook`.
 
 The plugin lives in [amplifiedengineer/playbook](https://github.com/amplifiedengineer/playbook) under `plugins/playbook`, next to the `playbook` binary. This repository holds only the listing and the checks on it.
 
@@ -12,7 +27,7 @@ The listing needs Claude Code 2.1.77 or later, which serves `git-subdir` plugins
 
 ```sh
 claude plugin marketplace add amplifiedengineer/marketplace
-claude plugin install playbook@pragmatic-engineer
+claude plugin install playbook@amplifiedengineer
 ```
 
 The plugin works on its own. The `playbook` binary is optional. It adds the hooks and the launcher.
