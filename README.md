@@ -1,5 +1,7 @@
 # marketplace
 
+> **Renamed.** The GitHub organization was `pragmatic-engineer`. It is now `amplifiedengineer`. The marketplace name stays `pragmatic-engineer`. The plugin id `playbook@pragmatic-engineer` does not change. If you added the marketplace from the old address, remove it and add it again: run `claude plugin marketplace remove pragmatic-engineer`, then `claude plugin marketplace add amplifiedengineer/marketplace`, then `claude plugin install playbook@pragmatic-engineer` if the plugin is no longer installed. If the retired hooks plugin is still installed, run `claude plugin uninstall playbook-hooks@pragmatic-engineer`.
+
 The `pragmatic-engineer` plugin marketplace for Claude Code. It lists one plugin, `playbook`.
 
 The plugin lives in [amplifiedengineer/playbook](https://github.com/amplifiedengineer/playbook) under `plugins/playbook`, next to the `playbook` binary. This repository holds only the listing and the checks on it.
