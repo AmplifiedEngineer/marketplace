@@ -15,8 +15,6 @@ claude plugin marketplace add amplifiedengineer/marketplace
 claude plugin install playbook@pragmatic-engineer
 ```
 
-The GitHub organization is now `amplifiedengineer`. The marketplace name stays `pragmatic-engineer`, so the plugin id `playbook@pragmatic-engineer` does not change. A marketplace you added from `pragmatic-engineer/marketplace` keeps working. To point it at the new address, run `claude plugin marketplace remove pragmatic-engineer`, then `claude plugin marketplace add amplifiedengineer/marketplace`, and run `claude plugin install playbook@pragmatic-engineer` if the plugin is no longer installed.
-
 The plugin works on its own. The `playbook` binary is optional. It adds the hooks and the launcher.
 
 ## Install the binary
