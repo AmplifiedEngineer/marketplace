@@ -33,6 +33,7 @@ case_ "a pin without a version" fail "$pin = \"v1.2.3\""
 case_ "a version without a pin" fail '.metadata.version = "1.2.3"'
 case_ "a version that is not MAJOR.MINOR.PATCH" fail "$pin = \"v1.2.3\" | .metadata.version = \"1.2\""
 case_ "a sha" fail '(.plugins[] | select(.name == "playbook") | .source.sha) = "abc"'
+case_ "the old marketplace name" fail '.name = "pragmatic-engineer"'
 
 if [ "$failures" -ne 0 ]; then
   echo "$failures failed"

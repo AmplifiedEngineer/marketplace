@@ -17,10 +17,10 @@ MKT="${MARKETPLACE_JSON:-$ROOT/.claude-plugin/marketplace.json}"
 fail=0
 bad() { echo "FAIL $*"; fail=1; }
 jq empty "$MKT" 2>/dev/null || { echo "FAIL: marketplace.json is not valid JSON"; exit 1; }
-if [ "$(jq -r '.name' "$MKT")" = "pragmatic-engineer" ]; then
-  echo "PASS name is pragmatic-engineer"
+if [ "$(jq -r '.name' "$MKT")" = "amplifiedengineer" ]; then
+  echo "PASS name is amplifiedengineer"
 else
-  bad "name must be pragmatic-engineer"
+  bad "name must be amplifiedengineer"
 fi
 mversion=$(jq -r '.metadata.version // empty' "$MKT")
 if [ -n "$mversion" ] && ! [[ "$mversion" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
