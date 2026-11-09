@@ -9,13 +9,43 @@
 # and the manifest there, at the ref or on the default branch, carries the same
 # plugin name, and the tag's version when a ref is set. metadata.version is
 # MAJOR.MINOR.PATCH, and it and the playbook ref are set together and match.
-# Set OFFLINE=1 to skip the lookup. MARKETPLACE_JSON checks another file, which
-# the tests use.
+# A plugin that installs from the playbook repository must pin the latest
+# playbook release or a newer tag, which a release PR carries. It may pin the
+# previous release for GRACE_SECONDS after the latest one, while the release
+# workflow opens the pin PR. Set OFFLINE=1 to skip the lookups.
+# MARKETPLACE_JSON checks another file. PLAYBOOK_LATEST_TAG and
+# PLAYBOOK_LATEST_AGE_SECONDS replace the release lookup, which the tests use.
 set -u
+PLAYBOOK_REPO="amplifiedengineer/playbook"
+GRACE_SECONDS=3600
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 MKT="${MARKETPLACE_JSON:-$ROOT/.claude-plugin/marketplace.json}"
 fail=0
 bad() { echo "FAIL $*"; fail=1; }
+# check_latest_pin NAME REF: fail when REF is older than the latest release.
+check_latest_pin() {
+  local name="$1" ref="$2" latest="${PLAYBOOK_LATEST_TAG:-}" age="${PLAYBOOK_LATEST_AGE_SECONDS:-}"
+  if [ -z "$latest" ]; then
+    [ "${OFFLINE:-0}" = 1 ] && return
+    local release published
+    if ! release=$(gh api "repos/$PLAYBOOK_REPO/releases/latest" --jq '.tag_name + " " + .published_at' 2>&1); then
+      bad "$name cannot look up the latest $PLAYBOOK_REPO release: $release"; return
+    fi
+    latest="${release% *}"
+    published="${release#* }"
+    age=$(( $(date +%s) - $(date -d "$published" +%s 2>/dev/null || date -j -u -f "%Y-%m-%dT%H:%M:%SZ" "$published" +%s) ))
+  fi
+  if ! [[ "$latest" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    bad "$name latest release tag is not vX.Y.Z (got $latest)"; return
+  fi
+  if [ "$ref" = "$latest" ] || [ "$(printf '%s\n%s\n' "$ref" "$latest" | sort -V | tail -n 1)" = "$ref" ]; then
+    echo "PASS $name pin $ref is the latest release $latest or newer"
+  elif [ "${age:-$GRACE_SECONDS}" -lt "$GRACE_SECONDS" ]; then
+    echo "PASS $name pin $ref is behind $latest, which is under $GRACE_SECONDS s old; the release workflow is moving it"
+  else
+    bad "the $name pin is $ref, the latest $PLAYBOOK_REPO release is $latest; the release workflow moves it, or run: gh workflow run release.yml -R $PLAYBOOK_REPO -f version=${latest#v}"
+  fi
+}
 jq empty "$MKT" 2>/dev/null || { echo "FAIL: marketplace.json is not valid JSON"; exit 1; }
 if [ "$(jq -r '.name' "$MKT")" = "amplifiedengineer" ]; then
   echo "PASS name is amplifiedengineer"
@@ -59,6 +89,9 @@ while [ "$i" -lt "$n" ]; do
     bad "the playbook ref (${ref:-none}) and metadata.version (${mversion:-none}) must be set together and match"
   fi
   echo "PASS $name source is git-subdir over https: $repo $path${ref:+ at $ref}"
+  if [ "$repo" = "$PLAYBOOK_REPO" ] && [ -n "$ref" ]; then
+    check_latest_pin "$name" "$ref"
+  fi
   [ "${OFFLINE:-0}" = 1 ] && continue
   if ! command -v gh >/dev/null 2>&1; then
     bad "$name cannot be looked up: gh is not installed (set OFFLINE=1 to skip)"; continue
