@@ -14,7 +14,7 @@
         "source": "git-subdir",
         "url": "https://github.com/amplifiedengineer/playbook.git",
         "path": "plugins/playbook",
-        "ref": "v0.42.0"
+        "ref": "v0.43.0"
       },
       "category": "workflow",
       "homepage": "https://github.com/amplifiedengineer/playbook",
@@ -26,6 +26,6 @@
     }
   ],
   "metadata": {
-    "version": "0.42.0"
+    "version": "0.43.0"
   }
 }
