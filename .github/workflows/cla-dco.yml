@@ -21,11 +21,11 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    uses: amplifiedengineer/.github/.github/workflows/dco-cla.yml@b2e9519585cfd55743223f5c42d3696c7cfbcb86 # main
+    uses: amplifiedengineer/.github/.github/workflows/dco-cla.yml@181e6d04c259727b9a7ae44e66cbfb2f52e99292 # main
 
   cla-sign:
     if: github.event_name == 'issue_comment'
     permissions:
       contents: write
       pull-requests: write
-    uses: amplifiedengineer/.github/.github/workflows/cla-sign.yml@b2e9519585cfd55743223f5c42d3696c7cfbcb86 # main
+    uses: amplifiedengineer/.github/.github/workflows/cla-sign.yml@181e6d04c259727b9a7ae44e66cbfb2f52e99292 # main
